@@ -15,8 +15,9 @@ class CreateRecipesTable extends Migration {
 		Schema::create('recipes',function($table){
 			$table->increments('id');
 			$table->string('name');
-			$table->string('description');
+			$table->longText('description');
 			$table->boolean('show_flag')->default(1);
+			$table->string('recipe_type');
 			$table->timestamps();
 		});
 	}

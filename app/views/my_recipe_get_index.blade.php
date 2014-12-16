@@ -22,13 +22,13 @@
  @if(count($my_recipes) == 0)
 	No Recipes found with your profile
  @else
-  {{ $errors->first('my_recipe','<span class="error">Select a recipe to be edited</span>') }}  
+  {{ $errors->first('my_recipe','<span class="error">Select a recipe</span>') }}  
   <div class="form-group">
   {{ Form::open(array('url' => '/my_recipe/edit', 'method' => 'post')) }}
    @foreach($my_recipes as $my_recipe)
      <h4><input tabindex="1" type="checkbox" name = "my_recipe[]" class="my_recipe" value="{{$my_recipe['id']}}">
         {{ $my_recipe['recipe_type']." Cuisine ".": ".$my_recipe['name'] }}</h4>
-           <p> {{  $my_recipe['description'] }} </p>  
+           <p> {{ nl2br($my_recipe['description']) }} </p>  
    @endforeach
 
   </div>

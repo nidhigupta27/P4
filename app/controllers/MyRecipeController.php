@@ -134,9 +134,18 @@ class MyRecipeController extends BaseController
             }
     }        
    if(Input::has('delete'))
-     {
+     {  
+        $rules = array('my_recipe' => 'required | size:1');
+        
+        $my_recipe_selected = array('my_recipe' => Input::get('my_recipe'));
 
-       $my_recipe_selected = Input::get('my_recipe');
+        $validator = Validator::make($my_recipe_selected,$rules);
+
+         if($validator->fails())
+           {
+                return Redirect::to('/my_recipe')
+                              ->withErrors($validator);
+           }
 
         try
           {
@@ -196,7 +205,7 @@ class MyRecipeController extends BaseController
       $rules = array(
                    'recipe_name'    => 'required|regex:/^[A-Za-z0-9 .\-\/\*]+$/i',
                    'recipe_desc'    => 'required',
-                   'recipe_type'    => 'required|alpha'
+                   'recipe_type'    => 'required|alpha_spaces'
                      );
        $my_recipe_selected = Input::all('my_recipe_selection');
 

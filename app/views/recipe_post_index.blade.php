@@ -26,7 +26,7 @@
        <h4><input tabindex="1" type="checkbox" name = "recipe[]" class="recipe_id" value="{{$recipe['id']}}">
         
        {{ $recipe['recipe_type']." Cuisine ".": ".$recipe['name'] }}</h4>
-           <p> {{  $recipe['description'] }} </p>
+           <p> {{  nl2br($recipe['description']) }} </p>
        @endif 
      @endforeach
     
