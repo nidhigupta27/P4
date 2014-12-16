@@ -9,6 +9,7 @@ class Recipe extends Eloquent
 	public static function search($cuisine_selected, $ingredients_selected = null)
 	{
 		$recipes = new \Illuminate\Database\Eloquent\Collection;
+    $query = new \Illuminate\Database\Eloquent\Collection;
 		#$recipes->add(new Post);
         #$recipes = new Recipe();
 
@@ -41,14 +42,18 @@ class Recipe extends Eloquent
                  echo($recipes)."<br>"."<br>" ;                   
                 }
             }     */  
-           foreach($ingredients_selected as $key => $val)
-            {
+ 
               $recipes = $recipes->merge(Recipe::WhereIn('recipe_type',$cuisine_selected)
-                                           ->Where('description','LIKE',"%$val%")
-                                           ->Where('show_flag','=',1)
-                                            ->get());
+                                       ->Where(function($query) use ($ingredients_selected)
+                                       {
+                                        foreach($ingredients_selected as $key => $val)
+                                          {
+                                         $query->Where('description','LIKE',"%$val%");
+                                          }
+                                       })
+                                       ->Where('show_flag','=',1)
+                                       ->get());
                                             
-            }
 
         }
        /*foreach($recipes as $recipe)

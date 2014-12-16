@@ -1,0 +1,82 @@
+body{
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+             }
+h1{
+    font-family: 'Volkhov', serif;
+    font-size: 45px;
+    color:#FFA500;
+    //color:#A52A2A;
+    font-style:oblique;
+    font-weight: bold;
+    text-shadow: 2px 2px 3px #323232;
+
+    } 
+h2{  
+    font-family: 'Libre Baskerville', serif;
+    font-size: 24px;
+    //color:#A52A2A;
+    text-shadow: 1px 1px 2px #323232;
+    }
+.navig{
+    font-size: 17px;
+}
+.labelhead
+{
+  font-weight: bold;
+  font-size: 18px;
+  color:#000000 ;
+  //font-family: 'Volkhov', serif;
+}
+.profile
+ {
+  font-family: 'Dancing Script', cursive;
+  font-size: 24px;
+  //color: #663399;
+ }
+ .center{
+  text-align:center;
+}  
+p{
+  font-family: 'Lusitana', serif;
+  font-size: 18px;
+
+ }    
+.container{
+display:block;
+padding: 0.4em;
+margin-left: 5em;
+margin-right: 4em;
+margin-top: 0.5em;
+margin-bottom: 4em; 
+text-align: left;
+overflow:auto;
+}
+.info
+{
+font-size: 14px;
+color:#7F8778;
+ font-weight:bold;
+}
+
+.error{
+color:red;
+font-weight: bold;
+}
+
+.form-control-inline {
+    min-width: 0;
+    width: auto;
+    display: inline;
+}
+.flash_message {
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  background-color:yellow;
+  text-align:center;
+  padding:5px;
+  font-weight: bold;
+
+}

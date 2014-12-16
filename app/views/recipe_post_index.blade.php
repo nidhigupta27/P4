@@ -3,12 +3,14 @@
 @section('title')
 	Dinner menu
 @stop
-
-@section('head')
-
-@stop
-
 @section('content')
+<div class="container">
+  <ul class="nav nav-tabs">
+  <li role="presentation"><a href="/">Home</a></li>
+  <li role="presentation"><a href="{{url('my_recipe')}}">My Recipes</a></li>
+  <li role="presentation"><a href="{{url('my_recipe/create')}}">Create new recipes</a></li>
+  <li role="presentation"><a href="{{url('/search_recipe')}}">Search Recipes</a></li>
+</ul>
 
 <div class="page-header">
 <h2>Here are the recipes for your search criterion!</h2>
@@ -18,7 +20,7 @@
  @if(count($recipes) == 0)
 	No results
 @else
-  {{ Form::open(array('url' => '/my_recipes1', 'method' => 'post','id' => 'my_recipes_added' )) }}
+  {{ Form::open(array('url' => '/add_to_my_recipe', 'method' => 'post','id' => 'my_recipes_added' )) }}
      @foreach($recipes as $recipe)
         @if($recipe['show_flag'] == 1) 
        <h4><input tabindex="1" type="checkbox" name = "recipe[]" class="recipe_id" value="{{$recipe['id']}}">
@@ -40,6 +42,7 @@
 
 
 @endif
+</div>
 
 <script type="text/javascript">
  jQuery(function ($) {

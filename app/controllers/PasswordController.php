@@ -59,10 +59,11 @@ class PasswordController extends BaseController {
 			case Password::INVALID_PASSWORD:
 			case Password::INVALID_TOKEN:
 			case Password::INVALID_USER:
-				return Redirect::back()->with('error', Lang::get($response));
+				return Redirect::back()->with('error', Lang::get($response))
+                               ->withInput();
 
 			case Password::PASSWORD_RESET:
-				return Redirect::to('/login')->with('flash_message', 'Your password has been reset');
+				return Redirect::to('/login')->with('flash_message', 'Your password has been successfully reset. You may proceed to login now!');
 	   }
 	    
     }

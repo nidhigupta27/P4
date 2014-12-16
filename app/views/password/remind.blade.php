@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+<div class="container">
 
 <div class="form-group">
    
@@ -16,18 +17,20 @@
  <div class="form-group">
 
 @if (Session::has('error'))
-  {{ trans(Session::get('reason')) }}
+   <span class="error">{{trans(Session::get('error'))}}</span> 
 @elseif (Session::has('success'))
-  An email with the password reset has been sent.
+  <span  class="flash_message">An email with the password reset has been sent.</span>
 @endif
  
 {{ Form::open(array('route' => 'password.request')) }}
  
   <p>{{ Form::label('email', 'Email') }}
-  {{ Form::text('email') }}</p>
- 
-  <p>{{ Form::submit('Submit') }}</p>
+     {{ Form::text('email','',
+               array('class'=>'form-control form-control-inline','placeholder' => 'janedoe@example.com')) }}</p>
+  <p>{{ Form::submit('Submit',
+  	           array('name' => 'submit','class' => 'btn btn-primary')) }}</p>
  
 {{ Form::close() }}
+</div>
 </div>
 @stop

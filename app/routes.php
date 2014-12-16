@@ -1,15 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
 Route::get('/trigger-error',function() {
 
     # Class Foobar should not exist, so this should create an error
@@ -90,63 +80,27 @@ Route::post('/signup', 'UserController@postSignup' );
 Route::post('/login', 'UserController@postLogin' );
 Route::get('/logout', 'UserController@getLogout' );
 
-#RESTful Routing 
-//Route::resource('park','ParkController');
+
 Route::get('/search_recipe','RecipeController@getRecipe');
 Route::post('/search_recipe','RecipeController@postRecipe');
-Route::match(['GET','POST'],'/my_recipes1',function(){
+
+
+Route::match(['GET','POST'],'/add_to_my_recipe',function(){
  $recipe_id = Input::get('recipe');
  Session::put('recipe_id',$recipe_id);
- // print_r(Session::get('recipe_id'));
-  return Redirect::to('/my_recipes');
- //                ->with('recipe_id',$recipe_id);
+ return Redirect::to('/my_recipe_added');
+
 });
-Route::match(['GET','POST'],'/my_recipes',array(
-   'before'  => 'auth', 
-    function()
-      { 
-           
-                $users = Auth::user();
-                              
-                $recipeid = Session::get('recipe_id');
-
-                #print_r($recipeid);
-
-                $recipe_added_flag = FALSE;
-
-                foreach($recipeid as $key => $val)
-                  {
-                     $my_recipe = Recipe::find($val);
-
-                     if(!$users->recipes->contains($my_recipe->id))
-                     {
-                     
-                         $users->recipes()->attach($my_recipe);
-
-                         $recipe_added_flag = TRUE;
-                  
-                      }
-                                
-                 }   
-
-       if($recipe_added_flag)
-       {
-       return Redirect::action('RecipeController@getRecipe')->with('flash_message','Your recipe has been added.');
-       }
-       else
-       {
-        return Redirect::action('RecipeController@getRecipe')->with('flash_message','Recipe already present,no recipe has been added.');
-       }        
-       }));
-
 
 Route::group(array(
     'before'  => 'auth'),function(){
     Route::GET('my_recipe','MyRecipeController@index');
     Route::GET('my_recipe/create','MyRecipeController@create');
     Route::POST('my_recipe/create','MyRecipeController@store');
-    #Route::GET('my_recipe/edit','MyRecipeController@edit');
     Route::match(['GET','POST'],'my_recipe/edit','MyRecipeController@edit');
+    Route::GET('/my_recipe/update','MyRecipeController@getUpdate');
+    Route::POST('/my_recipe/update','MyRecipeController@postUpdate');
+    Route::match(['GET','POST'],'/my_recipe_added','MyRecipeController@addRecipe');
 
 });
 
