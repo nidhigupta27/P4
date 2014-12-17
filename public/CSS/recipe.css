@@ -21,20 +21,7 @@ h2{
 .navig{
     font-size: 17px;
 }
-.labelhead
-{
-  font-weight: bold;
-  font-size: 18px;
-  color:#000000 ;
-  //font-family: 'Volkhov', serif;
-}
-.profile
- {
-  font-family: 'Dancing Script', cursive;
-  font-size: 24px;
-  //color: #663399;
- }
- .center{
+.center{
   text-align:center;
 }  
 p{
