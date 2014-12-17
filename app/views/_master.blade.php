@@ -36,7 +36,7 @@
 	@endif
 
   @if(!Request::is('password/reset/*'))
-	<ul class="nav nav-pills" role="tablist">
+	<ul class="nav nav-pills navig" role="tablist">
 		  @if(Auth::check())
 		        <li class="navbar-right"><a href='/logout'>Log out {{ Auth::user()->name; }}</a></li>
           @else 

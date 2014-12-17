@@ -39,16 +39,18 @@ margin-bottom: 4em;
 text-align: left;
 overflow:auto;
 }
-.info
-{
-font-size: 14px;
-color:#7F8778;
- font-weight:bold;
-}
 
+.cuisine
+{
+  font-size: 20px;
+  color:#A52A2A;
+  font-style:oblique;
+  font-weight:bold;
+}
 .error{
 color:red;
 font-weight: bold;
+font-size: 14px;
 }
 
 .form-control-inline {

@@ -9,7 +9,7 @@
 @stop
 
 @section('content')
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs navig">
   <li role="presentation" class="active"><a href="#">Home</a></li>
   <li role="presentation"><a href="{{url('my_recipe')}}">My Recipes</a></li>
   <li role="presentation"><a href="{{url('my_recipe/create')}}">Create new recipes</a></li>

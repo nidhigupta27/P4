@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container">
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs navig">
   <li role="presentation"><a href="/">Home</a></li>
   <li role="presentation"><a href="{{url('my_recipe/create')}}">Create new recipes</a></li>
   <li role="presentation" ><a href="{{url('/search_recipe')}}">Search Recipes</a></li>
@@ -22,7 +22,7 @@
  @if(count($my_recipes) == 0)
 	No Recipes found with your profile
  @else
-  {{ $errors->first('my_recipe','<span class="error">Select a recipe</span>') }}  
+  {{ $errors->first('my_recipe','<span class="error">Error: Please select a recipe</span>') }}  
   <div class="form-group">
   {{ Form::open(array('url' => '/my_recipe/edit', 'method' => 'post')) }}
    @foreach($my_recipes as $my_recipe)
@@ -31,7 +31,7 @@
           <div class="panel-heading">
             <h4 class="panel-heading">
               <input tabindex="1" type="checkbox" name = "my_recipe[]" class="my_recipe" value="{{$my_recipe['id']}}">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1{{$my_recipe['id']}}">{{ $my_recipe['recipe_type']." Cuisine ".": ".$my_recipe['name'] }}</a></h4>
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1{{$my_recipe['id']}}"><span class="cuisine">{{ $my_recipe['recipe_type']." Cuisine ".": ".$my_recipe['name'] }}</span></a></h4>
           </div>
          <div id="collapse1{{$my_recipe['id']}}" class="panel-collapse collapse out">  
            <div class="panel-body">{{  nl2br($my_recipe['description']) }}</div>

@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs navig">
        <li role="presentation"><a href="/">Home</a></li>
        <li role="presentation"><a href="{{url('/search_recipe')}}">Search Recipes</a></li>
     </ul>

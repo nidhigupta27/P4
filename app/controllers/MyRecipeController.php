@@ -160,11 +160,11 @@ class MyRecipeController extends BaseController
          
           }
           
+          $user = Auth::user();
+
           if(!$my_recipe_selected->show_flag)
           {
-             
-              $user = Auth::user();
-   
+               
             try
               {
                  $user->recipes()->detach($my_recipe_selected);
@@ -178,19 +178,29 @@ class MyRecipeController extends BaseController
             
                }
              
-            return Redirect::to('/my_recipe')->with('flash_message', 'Recipe has been deleted ');
-
           }
           else
           {
+            
+            try
+              {
+                 $user->recipes()->detach($my_recipe_selected);
+                
+              }
+            catch(exception $e)
+               {
+                 
+                 return Redirect::to('/my_recipe')->with('flash_message', 'Recipe to be deleted not found '); 
+            
+               }
+           
+           }
 
-            return Redirect::to('/my_recipe')->with('flash_message', 'Recipe is public and cannot be deleted');
-          
-          }
-
-      
+         return Redirect::to('/my_recipe')->with('flash_message', 'Recipe has been deleted ');
+     
      }
-    }
+
+  }
     public function getUpdate()
     {
       $my_recipe_selected= Session::get('my_recipe_selected');
