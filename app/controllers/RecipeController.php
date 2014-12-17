@@ -4,9 +4,7 @@ class RecipeController extends BaseController
 {
 
   public function __construct() {
-    # Make sure BaseController construct gets called
-    #parent::__construct();
-    
+
     $this->beforeFilter('auth', array('except' => array('getRecipe','postRecipe')));
   }
    

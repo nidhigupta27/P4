@@ -70,8 +70,6 @@ class MyRecipeController extends BaseController
                                                         ->withInput();
            }
 
-       #print_r($my_recipe['show_flag']);
-
        Recipe::save_user_recipe($my_recipe);
 
        return Redirect::to('/my_recipe')
@@ -122,9 +120,8 @@ class MyRecipeController extends BaseController
           if($recipe_can_update)
              {   
                Session::put('my_recipe_selected',$my_recipe_selected);
-           /*return View::make('my_recipe_edit')
-                       ->with('my_recipe_selected',$my_recipe_selected);*/
-                       return Redirect::to('/my_recipe/update');
+
+               return Redirect::to('/my_recipe/update');
                                      
              }
           else
