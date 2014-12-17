@@ -104,12 +104,6 @@
         Create my own Recipe</span></a>
 </div>
 
-<!-- <div class="form-group">
-      {{ Form::open(array('method' => 'GET','action' => 'MyRecipeController@create'))  }}
-            {{Form::submit('My Recipe',
-                        array('name' => 'create_my_recipe','class' => 'btn btn-primary'))}} &nbsp&nbsp
-      {{Form::close() }}
-</div> -->
 </div>
 @stop
 

@@ -38,7 +38,8 @@ class UserController extends BaseController
 	   $user->email = Input::get('email');
 	   $user->password = Hash::make(Input::get('password'));
        $user->name = Input::get('name');
-	   try{
+	   try
+	   {
 	   	$user->save();
 	   }
 	   catch (Exception $e){

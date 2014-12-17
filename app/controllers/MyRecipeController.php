@@ -218,11 +218,6 @@ class MyRecipeController extends BaseController
               return Redirect::to('my_recipe/update')
                                ->withErrors($validator)
                                ->withInput();
-
-              /*return View::make('my_recipe_edit')
-                           ->withInput('my_recipe_selected',$my_recipe_selected)
-                           ->withErrors($validator);
-*/
             }
           
           if(!Input::has('show_recipe'))

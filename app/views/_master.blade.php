@@ -24,9 +24,7 @@
        
 	   <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/flatly/bootstrap.min.css" rel="stylesheet">
 
-	   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-	   <link rel='stylesheet' href='/css/recipe.css' type='text/css'>
+	   <link rel='stylesheet' href='/CSS/recipe.css' type='text/css'>
 
 	@yield('head')
 
@@ -40,8 +38,7 @@
   @if(!Request::is('password/reset/*'))
 	<ul class="nav nav-pills" role="tablist">
 		  @if(Auth::check())
-		      <!--  <li><a href='/my_recipe'>My Recipe</a></li>  -->
-               <li class="navbar-right"><a href='/logout'>Log out {{ Auth::user()->name; }}</a></li>
+		        <li class="navbar-right"><a href='/logout'>Log out {{ Auth::user()->name; }}</a></li>
           @else 
                 <li><a href='/signup'>Signup</a></li>
                 <li><a href='/login'>Login</a></li>
@@ -52,6 +49,7 @@
 	@yield('content')
 
 	@yield('/body')
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  
 
 </body>
 </html>

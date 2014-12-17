@@ -23,10 +23,19 @@
   {{ Form::open(array('url' => '/add_to_my_recipe', 'method' => 'post','id' => 'my_recipes_added' )) }}
      @foreach($recipes as $recipe)
         @if($recipe['show_flag'] == 1) 
-       <h4><input tabindex="1" type="checkbox" name = "recipe[]" class="recipe_id" value="{{$recipe['id']}}">
-        
-       {{ $recipe['recipe_type']." Cuisine ".": ".$recipe['name'] }}</h4>
-           <p> {{  nl2br($recipe['description']) }} </p>
+       
+       <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-heading">
+              <input tabindex="1" type="checkbox" name = "recipe[]" class="recipe_id" value="{{$recipe['id']}}">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1{{$recipe['id']}}">{{ $recipe['recipe_type']." Cuisine ".": ".$recipe['name'] }}</a></h4>
+          </div>
+         <div id="collapse1{{$recipe['id']}}" class="panel-collapse collapse out">  
+           <div class="panel-body">{{  nl2br($recipe['description']) }}</div>
+         </div>
+        </div>
+       </div>  
        @endif 
      @endforeach
     
@@ -44,9 +53,11 @@
 @endif
 </div>
 
+@stop
+@section('/body')
 <script type="text/javascript">
  jQuery(function ($) {
- 	console.log("I am here");
+  console.log("I am here");
     //form submit handler
     $('#my_recipes_added').submit(function (e) {
         //check atleat 1 checkbox is checked
@@ -59,6 +70,10 @@
     });
 });
 
-</script>        
+</script>      
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 @stop

@@ -20,9 +20,9 @@ class RecipeController extends BaseController
      if(Input::has('generate'))
      {
         $cusines = Input::get('cuisine');
-        print_r($cusines);
+        
         $ingredients = Input::get('ingredients');
-        print_r($ingredients);
+        
        foreach( $cusines as $key => $val)
           {
               $cuisine_selected[] = $val; 

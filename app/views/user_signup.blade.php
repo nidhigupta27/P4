@@ -18,12 +18,12 @@
     {{ Form::label('name') }} <br>
     {{ Form::text('name','',
                  array('class'=>'form-control form-control-inline')) }}
-  {{ $errors->first('name','<span class="error">:message</span>') }}<br><br>
+    {{ $errors->first('name','<span class="error">:message</span>') }}<br><br>
        
     {{ Form::label('email') }}<br>
     {{ Form::text('email','',
                  array('class'=>'form-control form-control-inline','placeholder' => 'janedoe@example.com')) }}
-  {{ $errors->first('email','<span class="error">:message</span>') }}<br><br>
+    {{ $errors->first('email','<span class="error">:message</span>') }}<br><br>
 
     {{ Form::label('password') }} <br>
     {{ Form::password('password',
