@@ -205,7 +205,7 @@ class MyRecipeController extends BaseController
       $rules = array(
                    'recipe_name'    => 'required|regex:/^[A-Za-z0-9 .\-\/\*]+$/i',
                    'recipe_desc'    => 'required',
-                   'recipe_type'    => 'required|alpha_spaces'
+                   'recipe_type'    => 'required|regex:/^[\pL\s]+$/u'
                      );
        $my_recipe_selected = Input::all('my_recipe_selection');
 

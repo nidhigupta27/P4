@@ -27,6 +27,7 @@
         <div><br>
         <div class="form-group">
           {{Form::label('recipe_type','Recipe Type ')}}<br>
+
           {{Form::text('recipe_type',$my_recipe_selection['recipe_type'],
                       array('class'=>'form-control form-control-inline'))}}
           {{ $errors->first('recipe_type','<span class="error">:message</span>') }}
