@@ -18,7 +18,7 @@
 
 <div class="form-group">
  @if(count($recipes) == 0)
-	No results
+	No recipes found. Please select different ingredients or create your own recipe.
 @else
   {{ Form::open(array('url' => '/add_to_my_recipe', 'method' => 'post','id' => 'my_recipes_added' )) }}
      @foreach($recipes as $recipe)
