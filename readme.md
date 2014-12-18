@@ -4,8 +4,8 @@
  This assignment involves creating a web application "Whats for dinner today?" using Laravel Framework and MYSQL database. The web application uses a MYSQL database called P4 and demonstrates the implementation of four CRUD operations- Select a menu based on cuisine and ingredients,create a dinner menu which can be saved in user's profile for later retrieval,update a recipe and save it in user's profile and finally delete a recipe from user's profile.
 
 ## Demo
-  * Here is my Jing screencast- [http://screencast.com/t/F0wdLKSR0Gj]
-  (http://screencast.com/t/F0wdLKSR0Gj)
+  * Here is my Jing screencast- [http://screencast.com/t/ebfGCBTJJwq]
+  (http://screencast.com/t/ebfGCBTJJwq)
 
 ## Details for teaching team
 * P4 database has a users table,recipes table,user\_recipe(pivot table)and password\_reminders table.
