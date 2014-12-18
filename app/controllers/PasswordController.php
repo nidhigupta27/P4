@@ -44,8 +44,6 @@ class PasswordController extends BaseController {
 			'email', 'password', 'password_confirmation', 'token'
 		);
      
-     #$password = Input::get('password');
- 
      $response = Password::reset($credentials, function($user, $password)
       {
        $user->password = Hash::make($password);

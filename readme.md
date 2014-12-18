@@ -1,25 +1,32 @@
-## Laravel PHP Framework
+# P4: Whats for dinner today?
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Description
+ This assignment involves creating a web application "Whats for dinner today?" using Laravel Framework and MYSQL database. The web application uses a MYSQL database called P4 and demonstrates the implementation of four CRUD operations- Select a menu based on cuisine and ingredients,create a dinner menu which can be saved in user's profile for later retrieval,update a recipe and save it in user's profile and finally delete a recipe from user's profile.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+## Demo
+  * Here is my Jing screencast- [http://screencast.com/t/F0wdLKSR0Gj]
+  (http://screencast.com/t/F0wdLKSR0Gj)
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+## Details for teaching team
+* P4 database has a users table,recipes table,user\_recipe(pivot table)and password\_reminders table.
+* Database is seeded with data(two recipes of each cuisine) in above tables using Laravel Seeder(SearchCreateRecipeSeeder.php) 
+* Validation is done and error messages are generated to alert the user to input the required missing inputs or to verify invalid inputs.
+* Password reminder is implemented which enables user to reset password. Emails are sent using mailgun's SMTP service.
+* While searching for recipes(a login is not required), more than one ingredients can be selected from the select box(press the control key). More than one cuisines can also be selected if user wants to check different cuisines for the same ingredients.For each cuisine selected by the user the recipe table is searched for recipes that match all the ingredients selected by the user.
+* User can create own recipes and save them to the database. Depending on whether user selects a recipe to be visible or not visible to others, its saved as public or private in the recipes table. 
+* Edit functionality enables user to edit recipes which are private to user. Edits are prevented on recipes which are visible(public) to everyone. This is done to ensure data consistency and prevent one user from modifying someone else's recipe.
+* Delete functionality enables user to delete a recipe(both public and private) from User's profile. On deleteing a private recipe(in short user created the recipe and is only visible to the user), the recipe gets deleted from both the user's profile and also from recipes table.
+* The data validation on the recipe method on Create new recipes and Update recipe page checks to see if some data is entered in recipe method field(only required). No other validation is done to enable users to add recipes(international cuisines) with special characters or symbols.
+* User might see a "No recipe message" (a lot) as database has a few entries at the moment.As we keep adding more recipes(via create my own recipe page or Laravel seeding), there will be more recipes to select from. 
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+## Live URL of the project
+* [http://p4.dwa15-ng.me] (http://p4.dwa15-ng.me)
 
-## Official Documentation
+## Outside Code used
+* Google Fonts
+* Bootstrap [http://getbootstrap.com/](http://getbootstrap.com/)
+* Java Script [http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js](http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js)
+* jQuery [http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js](http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js)
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
 
-### Contributing To Laravel
-
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Thanks!

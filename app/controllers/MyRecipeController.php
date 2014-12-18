@@ -2,6 +2,7 @@
 
 class MyRecipeController extends BaseController 
 { 
+  # Generate a  view for MyRecipe page here
   public function index()
    {  
         $user = Auth::user();
@@ -12,21 +13,21 @@ class MyRecipeController extends BaseController
                    ->with('my_recipes',$my_recipes);
 
    }
+  # Generate a  view for creating a new recipe page here
    public function create()
    {
         
        return View::make('my_recipe_create');               
 
    }
+   # Adding a recipe from search recipe page to the user's profile
    public function addRecipe()
    {
     $users = Auth::user();
                               
     $recipeid = Session::get('recipe_id');
 
-    print_r($recipeid);
-
-     $recipe_added_flag = FALSE;
+    $recipe_added_flag = FALSE;
 
      foreach($recipeid as $key => $val)
         {
@@ -40,7 +41,8 @@ class MyRecipeController extends BaseController
                   
                    }
                                 
-         }   
+         }  
+    #If the recipe is already present in the user's profile, it is not added again 
 
        if($recipe_added_flag)
          {
@@ -51,12 +53,13 @@ class MyRecipeController extends BaseController
         return Redirect::action('RecipeController@getRecipe')->with('flash_message','Recipe already present,no recipe has been added.');
         }       
    }
+   # Save the new recipe created in User's profile and the recipes table
    public function store()
    {
        if(Input::has('save'))
        {
         $rules = array(
-                   'recipe_name'    => 'required|regex:/^[A-Za-z0-9 .\-\/\*]+$/i',
+                   'recipe_name'    => 'required|regex:/^[A-Za-z0-9 .\-\/\*\(\)\"\']+$/i',
                    'recipe_desc'    => 'required',
                    'show_flag'      => 'required'
                  );
@@ -78,6 +81,8 @@ class MyRecipeController extends BaseController
        }          
 
    }
+   # Modifying an existing private recipe(only visible to user) or deleting a recipe from user's 
+   # profile.
    public function edit()
    {
        if(Input::has('edit'))
@@ -87,7 +92,7 @@ class MyRecipeController extends BaseController
         $my_recipe_selected = array('my_recipe' => Input::get('my_recipe'));
 
         $validator = Validator::make($my_recipe_selected,$rules);
-
+  # Checks to see is there are any validation errors
          if($validator->fails())
            {
                 return Redirect::to('/my_recipe')
@@ -103,7 +108,7 @@ class MyRecipeController extends BaseController
             {
              return Redirect::to('/my_recipe/edit')->with('flash_message', 'Recipe to be updated not found ');  
             }
-         
+  # Recipe can only be modified if its a private recipe(created by the user and visible only to user)       
          foreach($my_recipe_selected as $my_recipe_select)
            {
 
@@ -116,12 +121,12 @@ class MyRecipeController extends BaseController
                 $recipe_can_update = 1;
               }
            }
-        
+  # Update method actually updates the recipe in the database      
           if($recipe_can_update)
              {   
                Session::put('my_recipe_selected',$my_recipe_selected);
 
-               return Redirect::to('/my_recipe/update');
+                        return Redirect::to('/my_recipe/update');
                                      
              }
           else
@@ -129,7 +134,8 @@ class MyRecipeController extends BaseController
            return Redirect::to('/my_recipe/')
                           ->with('flash_message', 'Recipe cannot be updated as its public');  
             }
-    }        
+    }  
+  # The recipe can be deleted from the user's profile.      
    if(Input::has('delete'))
      {  
         $rules = array('my_recipe' => 'required | size:1');
@@ -137,7 +143,7 @@ class MyRecipeController extends BaseController
         $my_recipe_selected = array('my_recipe' => Input::get('my_recipe'));
 
         $validator = Validator::make($my_recipe_selected,$rules);
-
+  # Checking for any validation errors here
          if($validator->fails())
            {
                 return Redirect::to('/my_recipe')
@@ -158,7 +164,9 @@ class MyRecipeController extends BaseController
           }
           
           $user = Auth::user();
-
+  # If the recipe is private its deleted from both the user profile and also from the recipe table.
+  # The recipe no longer exists in the database now.
+  # If the recipe is public(visible to everyone) its deleted only from the user's profile.
           if(!$my_recipe_selected->show_flag)
           {
                
@@ -198,6 +206,7 @@ class MyRecipeController extends BaseController
      }
 
   }
+ # The recipe is updated here and the changes are saved in the recipe table
     public function getUpdate()
     {
       $my_recipe_selected= Session::get('my_recipe_selected');
@@ -210,7 +219,7 @@ class MyRecipeController extends BaseController
     {
   
       $rules = array(
-                   'recipe_name'    => 'required|regex:/^[A-Za-z0-9 .\-\/\*]+$/i',
+                   'recipe_name'    => 'required|regex:/^[A-Za-z0-9 .\-\/\*\(\)\"\']+$/i',
                    'recipe_desc'    => 'required',
                    'recipe_type'    => 'required|regex:/^[\pL\s]+$/u'
                      );
@@ -256,9 +265,6 @@ class MyRecipeController extends BaseController
     }
   
        
- }    
-
-  
-    
+ }      
 
 }

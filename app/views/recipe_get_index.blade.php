@@ -6,16 +6,16 @@
 
 @section('content')
 <div class="container">
-<ul class="nav nav-tabs navig">
-  <li role="presentation"><a href="/">Home</a></li>
-  <li role="presentation"><a href="{{url('my_recipe')}}">My Recipes</a></li>
-  <li role="presentation"><a href="{{url('my_recipe/create')}}">Create new recipes</a></li>
-  <li role="presentation" class="active"><a href="#">Search Recipes</a></li>
-</ul>
+ <ul class="nav nav-tabs navig">
+   <li role="presentation"><a href="/">Home</a></li>
+   <li role="presentation"><a href="{{url('my_recipe')}}">My Recipes</a></li>
+   <li role="presentation"><a href="{{url('my_recipe/create')}}">Create new recipes</a></li>
+   <li role="presentation" class="active"><a href="#">Search Recipes</a></li>
+ </ul>
 
-<div class="page-header">
-<h2>Select a dinner menu or create your own!</h2>
-</div>
+ <div class="page-header">
+  <h2>Select a dinner menu or create your own!</h2>
+ </div>
  <div class="form-group">
       {{ Form::open(array('url' => '/search_recipe'))}}
            {{Form::label('cuisine','Cuisine you are in mood for? ')}} <br>
@@ -97,13 +97,13 @@
            {{Form::reset('Reset',array('name' => 'reset','class' => 'btn btn-primary'))}}
            {{Form::close() }}
   </div><br><br>
-<div class="form-group">
-<p> Wanna be creative and design your own menu;Go ahead !!</p>
-</div>
-<div class="form-group">
-  <a href="{{action('MyRecipeController@create')}}"><span class="btn btn-primary">
+  <div class="form-group">
+    <p> Wanna be creative and design your own menu;Go ahead !!</p>
+  </div>
+  <div class="form-group">
+    <a href="{{action('MyRecipeController@create')}}"><span class="btn btn-primary">
         Create my own Recipe</span></a>
-</div>
+  </div>
 
 </div>
 @stop

@@ -9,41 +9,19 @@ class Recipe extends Eloquent
 	public static function search($cuisine_selected, $ingredients_selected = null)
 	{
 		$recipes = new \Illuminate\Database\Eloquent\Collection;
-    $query = new \Illuminate\Database\Eloquent\Collection;
-		#$recipes->add(new Post);
-        #$recipes = new Recipe();
-
+    $query   = new \Illuminate\Database\Eloquent\Collection;
+	/* Check to see if no ingredients were selected. If so,select all recipes from the recipes table 
+     for the selected cuisine(s).Otherwise for each cuisine selected, the recipe table is searched for 
+     the recipes that match the ingredients selected by the user(recipes selected are those that match all
+     the ingredients)	*/
        if(is_null($ingredients_selected))
         {
-        	#print_r($cuisine_selected);
-            /*foreach($cuisine_selected as $key=>$val)
-            {
-         
-                 $recipes =  Recipe::where('recipe_type','LIKE',"%$val%")
-                                  ->get();
-                 echo($recipes)."<br>"."<br>" ;                                              
-            }      */  
             $recipes = Recipe::WhereIn('recipe_type',$cuisine_selected)
                                  ->get();
-
-             #print_r($recipes);
         }
        else
-        {
-        	#$ingredients_selected = implode(" ",$ingredients_selected);
-
-           /*foreach($cuisine_selected as $key => $val)
-            {
-              foreach($ingredients_selected as $key1 => $val1)   
-                {
-                 $recipes =   Recipe::where('recipe_type','LIKE',"%$val%")
-                                    ->where('description','LIKE',"%$val1%")
-                                    ->get();
-                 echo($recipes)."<br>"."<br>" ;                   
-                }
-            }     */  
- 
-              $recipes = $recipes->merge(Recipe::WhereIn('recipe_type',$cuisine_selected)
+        { 
+            $recipes = $recipes->merge(Recipe::WhereIn('recipe_type',$cuisine_selected)
                                        ->Where(function($query) use ($ingredients_selected)
                                        {
                                         foreach($ingredients_selected as $key => $val)
@@ -56,13 +34,9 @@ class Recipe extends Eloquent
                                             
 
         }
-       /*foreach($recipes as $recipe)
-        {
-        	echo($recipe)."<br>"."<br>" ;
-        	
-        }*/
         return $recipes;
 	}
+/* The new recipe created by the user is saved in the recipe table and the user_recipe pivot table */ 
 
   public static function save_user_recipe($my_recipe)
   {
@@ -76,8 +50,6 @@ class Recipe extends Eloquent
       
        
         $new_recipe->recipe_type = $my_recipe['cuisine'][0];
-
-        #$new_recipe= $my_recipe;
 
         try
         {
@@ -103,10 +75,10 @@ class Recipe extends Eloquent
        
 
   }
+ /* The private recipe(recipe that is created by the user and visible only to the user) 
+      is updated here */ 
   public static function edit_my_recipe($my_recipe_modified)
   {
-     #print_r($my_recipe_modified);
-     #$new_recipe = new Recipe();
        try
          {
           $my_recipe_old = Recipe::where('id','=',$my_recipe_modified['id'])
@@ -121,7 +93,7 @@ class Recipe extends Eloquent
           $my_recipe_old->description = $my_recipe_modified['recipe_desc'];
 
           $my_recipe_old->show_flag   = $my_recipe_modified['show_recipe'];
-          $my_recipe_old->recipe_type  = $my_recipe_modified['recipe_type'];
+          $my_recipe_old->recipe_type = $my_recipe_modified['recipe_type'];
           return $my_recipe_old;
        
         

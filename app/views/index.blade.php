@@ -10,12 +10,12 @@
 
 @section('content')
 <div class='container'>
-<ul class="nav nav-tabs navig">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="{{url('my_recipe')}}">My Recipes</a></li>
-  <li role="presentation"><a href="{{url('my_recipe/create')}}">Create new recipes</a></li>
-  <li role="presentation"><a href="{{url('/search_recipe')}}">Search Recipes</a></li>
-</ul>
+ <ul class="nav nav-tabs navig">
+   <li role="presentation" class="active"><a href="#">Home</a></li>
+   <li role="presentation"><a href="{{url('my_recipe')}}">My Recipes</a></li>
+   <li role="presentation"><a href="{{url('my_recipe/create')}}">Create new recipes</a></li>
+   <li role="presentation"><a href="{{url('/search_recipe')}}">Search Recipes</a></li>
+ </ul>
   <div class="col-sm-12 center">
    <h1> What's for dinner today ? </h1>
          

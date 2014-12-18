@@ -12,20 +12,20 @@
    <li role="presentation"><a href="{{url('/search_recipe')}}">Search Recipes</a></li>
    <li role="presentation" class="active"><a href="#">Create new recipes</a></li>
   </ul>
-<div class="page-header">
-<h2>Create your own a dinner menu here!</h2>
-</div>
-<div class="form-group">
+ <div class="page-header">
+  <h2>Create your own a dinner menu here!</h2>
+ </div>
+ <div class="form-group">
       {{ Form::open(array('url' => '/my_recipe/create'))}}
            {{Form::label('cuisine','Cuisine ')}}<br>
            {{Form::select('cuisine[]',
-                  array('american'    => 'American',
-                        'indian'      => 'Indian',
-                        'chinese'     => 'Chinese',
-                        'italian'     => 'Italian',
-                        'thai'        => 'Thai',
-                        'middle east' => 'Middle East',
-                        'potpourri'   => 'Potpourri'),'indian',array('class'=>'form-control form-control-inline'),['multiple']) }}
+                  array('American'    => 'American',
+                        'Indian'      => 'Indian',
+                        'Chinese'     => 'Chinese',
+                        'Italian'     => 'Italian',
+                        'Thai'        => 'Thai',
+                        'Middle east' => 'Middle East',
+                        'Potpourri'   => 'Potpourri'),'indian',array('class'=>'form-control form-control-inline'),['multiple']) }}
            
   </div><br>
   <div class="form-group">
@@ -40,7 +40,7 @@
                         array('class'=>'form-control form-control-inline','placeholder' => 'Enter recipe description here!'))}}
   
   {{ $errors->first('recipe_desc','<span class="error">:message</span>') }}
-</div><br>
+  </div><br>
   <div class="form-group">
   	     {{Form::label('show_flag','Make it visible to all:  ')}}
   	     {{Form::label('show_flag_yes','Yes ')}}
@@ -48,15 +48,15 @@
   	     {{Form::label('show_flag_no','No ')}}
   	     {{Form::checkbox('show_flag','0')}}
   {{ $errors->first('show_flag','<span class="error">:message</span>') }}
-</div><br>
+  </div><br>
   <div class="form-group">
 	{{Form::submit('Save',
                         array('name' => 'save','class' => 'btn btn-primary'))}} &nbsp&nbsp
   {{Form::reset('Reset',array('name' => 'reset','class' => 'btn btn-primary'))}}
           
-{{Form::close() }}
+  {{Form::close() }}
 
-</div>
+  </div>
 
 </div>
 @stop
